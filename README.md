@@ -84,6 +84,7 @@ are utilized to output results, glmnet and predict. The output of the prediction
 to the actuals. Figure 5 showcases the R coding utilized as well as a representation of six of the
 predicted values to their actuals, giving an idea of how the model performed.
 
+<img width="708" alt="Screen Shot 2020-11-16 at 8 47 11 PM" src="https://user-images.githubusercontent.com/66921930/99329935-4d55e600-284d-11eb-90a9-7e1299312f5a.png">
 
 
 One of the objectives of Lasso regression is the avoidance of overfitting the model. In order to
@@ -92,12 +93,14 @@ and output of the R-squared value for the model. R-squared determines how close 
 fitted regression line (The Minitab Blog, 2013). In general, the higher the R-squared the better the fit,
 although that is not always the case. At 0.53 the R-squared for this model falls in the middle.
 
+<img width="661" alt="Screen Shot 2020-11-16 at 8 47 31 PM" src="https://user-images.githubusercontent.com/66921930/99329938-4d55e600-284d-11eb-8252-3fe4cd397972.png">
 
 A last consideration for Lasso regression is the important variables in predicting “Fertility”.
 Since Lasso regression can actually remove variables from the model it is beneficial to understand
 which variables are influencers. Based on the R code run in Figure 7, the determination can be made
 that “Catholic” and “Infant Mortality” were the variables utilized to make predictions on “Fertility”.
 
+<img width="713" alt="Screen Shot 2020-11-16 at 8 47 55 PM" src="https://user-images.githubusercontent.com/66921930/99329940-4dee7c80-284d-11eb-832e-164cafdefcc1.png">
 
 # Conclusion
 
