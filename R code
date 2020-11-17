@@ -1,0 +1,47 @@
+#Setting up the dataset
+library(glmnet)
+library(FSA)
+
+data(swiss)
+headtail(swiss)
+
+x<-model.matrix(Fertility~. , swiss)[,-1]
+y<- swiss$Fertility
+lambdas<- 10^seq(2,-2,by = -.1)
+
+#Training and Testing data determination
+set.seed(1)
+train <- sample(1:nrow(x), nrow(x)/2)
+x_test <- (-train)
+y_test <- y[x_test]
+
+#Cross Validation
+lasso_reg <- cv.glmnet(x[train,], y[train], alpha=1, lambda=lambdas, nfolds=5)
+lasso_reg
+plot(lasso_reg)
+
+#Identification of best lambda
+best_lambda <- lasso_reg$lambda.min
+best_lambda
+
+#Utilizing best lambda for model
+lasso_best<- glmnet(x[train,], y[train], alpha=1, lambda= best_lambda)
+predictions<- predict(lasso_best, s= best_lambda, newx = x[x_test,])
+predictions
+
+#Actual vs Prediction Showcase
+final<- cbind(y_test, predictions)
+colnames(final) <- c("actual", "predicted")
+headtail(final)
+final
+
+#R-squared
+actual <- final[,1]
+preds <- final[,2]
+rss <- sum((preds - actual) ^ 2)
+tss <- sum((actual - mean(actual)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+#List of important variables
+coef(lasso_best)
